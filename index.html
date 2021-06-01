@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>GCP Test</title><script>// Sample Quiz with LPIC-1 Exam 101 Questions bundled
+  window.Quiz = {
+    // Title heading of the quiz
+    title: 'GCP quiz',
+    // Description of the quiz
+    description: '',
+    customizeQuiz: true,
+    // (Maximum) Number of Questions
+    questionCount: 20,
+    // Duration in minutes
+    duration: 30,
+    // Randomize the quiz and questions (if the pool is larger)
+    randomize: true,
+    // API Endpoint for reporting or suggesting questions (Quiz server)
+    // Without, reporting or suggesting questions isn't possible.
+    // apiEndpoint: 'http://localhost:3000',
+    // Link to a JSON file or REST API server
+    questionsEndpoint: '/data.json',
+    // questionsEndpoint: 'http://localhost:3000/questions',
+    // Show the custom Quiz builder on startup and not the Quiz
+    // customizeQuiz: true
+  };</script><link href=css/app.css rel=preload as=style><link href=js/app.js rel=preload as=script><link href=css/app.css rel=stylesheet></head><body><noscript><strong>We're sorry but the Quiz doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id=app></div><script src=js/app.js></script></body></html>

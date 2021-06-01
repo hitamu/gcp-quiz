@@ -1,0 +1,2643 @@
+[
+    {
+        "title": "You are building storage for files for a data pipeline on Google Cloud. You want to support JSON files. The schema of these files will occasionally change. Your analyst teams will use running aggregate ANSI SQL queries on this data. What should you do?",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. Use BigQuery for storage. Provide format files for data load. Update the format files as needed.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Use BigQuery for storage. Select “Automatically detect” in the Schema section.",
+                "explanation": "B is correct because of the requirement to support occasionally (schema) changing JSON files and aggregate ANSI SQL queries"
+            },
+            {
+                "content": "C. Use Cloud Storage for storage. Link data as temporary tables in BigQuery and turn on the “Automatically detect” option in the Schema section of BigQuery.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Use Cloud Storage for storage. Link data as permanent tables in BigQuery and turn on the “Automatically detect” option in the Schema section of BigQuery.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "You use a Hadoop cluster both for serving analytics and for processing and transforming data. The data is currently stored on HDFS in Parquet format. The data processing jobs run for 6 hours each night. Analytics users can access the system 24 hours a day. Phase 1 is to quickly migrate the entire Hadoop environment without a major re-architecture. Phase 2 will include migrating to BigQuery for analytics and to Cloud Dataflow for data processing. You want to make the future migration to BigQuery and Cloud Dataflow easier by following Google-recommended practices and managed services. What should you do?",
+        "kind": "single",
+        "resolution": [
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. Lift and shift Hadoop/HDFS to Cloud Dataproc.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Lift and shift Hadoop/HDFS to Compute Engine.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Create a single Cloud Dataproc cluster to support both analytics and data processing, and point it at a Cloud Storage bucket that contains the Parquet files that were previously stored on HDFS.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Create separate Cloud Dataproc clusters to support analytics and data processing, and point both at the same Cloud Storage bucket that contains the Parquet files that were previously stored on HDFS.",
+                "explanation": "D Is correct because it leverages a managed service (Cloud Dataproc), the data is stored on GCS in Parquet format which can easily be loaded into BigQuery in the future and the Cloud Dataproc clusters are job specific. https"
+            }
+        ]
+    },
+    {
+        "title": "You are building a new real-time data warehouse for your company and will use Google BigQuery streaming inserts. There is no guarantee that data will only be sent in once but you do have a unique ID for each row of data and an event timestamp. You want to ensure that duplicates are not included while interactively querying data. Which query type should you use?",
+        "kind": "single",
+        "resolution": [
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. Include ORDER BY DESC on timestamp column and LIMIT to 1.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Use GROUP BY on the unique ID column and timestamp column and SUM on the values.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Use the LAG window function with PARTITION by unique ID along with WHERE LAG IS NOT NULL.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Use the ROW_NUMBER window function with PARTITION by unique ID along with WHERE row equals 1.",
+                "explanation": "D is correct because it will just pick out a single row for each set of duplicates. https"
+            }
+        ]
+    },
+    {
+        "title": "You are designing a streaming pipeline for ingesting player interaction data for a mobile game. You want the pipeline to handle out-of-order data delayed up to 15 minutes on a per-player basis and exponential growth in global users. What should you do?",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. Design a Cloud Dataflow streaming pipeline with session windowing and a minimum gap duration of 15 minutes. Use “individual player” as the key. Use Cloud Pub/Sub as a message bus for ingestion.",
+                "explanation": "A is correct because the question requires delay be handled on a per-player basis and session windowing will do that. PubSub handles the need to scale exponentially with traffic coming from around the globe. https"
+            },
+            {
+                "content": "B. Design a Cloud Dataflow streaming pipeline with session windowing and a minimum gap duration of 15 minutes. Use “individual player” as the key. Use Apache Kafka as a message bus for ingestion.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Design a Cloud Dataflow streaming pipeline with a single global window of 15 minutes. Use Cloud Pub/Sub as a message bus for ingestion.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Design a Cloud Dataflow streaming pipeline with a single global window of 15 minutes. Use Apache Kafka as a message bus for ingestion.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Your company is loading comma-separated values (CSV) files into Google BigQuery. The data is fully imported successfully; however, the imported data is not matching byte-to-byte to the source file. What is the most likely cause of this problem?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. The CSV data loaded in BigQuery is not flagged as CSV.",
+                "explanation": ""
+            },
+            {
+                "content": "B. The CSV data had invalid rows that were skipped on import.",
+                "explanation": ""
+            },
+            {
+                "content": "C. The CSV data loaded in BigQuery is not using BigQuery’s default encoding.",
+                "explanation": "C is correct because this is the only situation that would cause successful import. https"
+            },
+            {
+                "content": "D. The CSV data has not gone through an ETL phase before loading into BigQuery.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Your company is migrating their 30-node Apache Hadoop cluster to the cloud. They want to re-use Hadoop jobs they have already created and minimize the management of the cluster as much as possible. They also want to be able to persist data beyond the life of the cluster. What should you do?",
+        "kind": "single",
+        "resolution": [
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. Create a Google Cloud Dataflow job to process the data.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Create a Google Cloud Dataproc cluster that uses persistent disks for HDFS.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Create a Hadoop cluster on Google Compute Engine that uses persistent disks.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Create a Cloud Dataproc cluster that uses the Google Cloud Storage connector.",
+                "explanation": "D is correct because it uses managed services, and also allows for the data to persist on GCS beyond the life of the cluster."
+            },
+            {
+                "content": "E. Create a Hadoop cluster on Google Compute Engine that uses Local SSD disks.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "You work for an economic consulting firm that helps companies identify economic trends as they happen. As part of your analysis, you use Google BigQuery to correlate customer data with the average prices of the 100 most common goods sold, including bread, gasoline, milk, and others. The average prices of these goods are updated every 30 minutes. You want to make sure this data stays up to date so you can combine it with other data in BigQuery as cheaply as possible. What should you do?",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. Load the data every 30 minutes into a new partitioned table in BigQuery.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Store and update the data in a regional Google Cloud Storage bucket and create a federated data source in BigQuery.",
+                "explanation": "B is correct because regional storage is cheaper than BigQuery storage."
+            },
+            {
+                "content": "C. Store the data in Google Cloud Datastore. Use Google Cloud Dataflow to query BigQuery and combine the data programmatically with the data stored in Cloud Datastore.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Store the data in a file in a regional Google Cloud Storage bucket. Use Google Cloud Dataflow to query BigQuery and combine the data programmatically with the data stored in Google Cloud Storage.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "You have 250,000 devices which produce a JSON device status event every 10 seconds. You want to capture this event data for outlier time series analysis. What should you do?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. Ship the data into BigQuery. Develop a custom application that uses the BigQuery API to query the dataset and displays device outlier data based on your business requirements.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Ship the data into BigQuery. Use the BigQuery console to query the dataset and display device outlier data based on your business requirements.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Ship the data into Cloud Bigtable. Use the Cloud Bigtable cbt tool to display device outlier data based on your business requirements.",
+                "explanation": "C is correct because the data type, volume, and query pattern best fits BigTable capabilities and also Google best practices as linked below. https"
+            },
+            {
+                "content": "D. Ship the data into Cloud Bigtable. Install and use the HBase shell for Cloud Bigtable to query the table for device outlier data based on your business requirements.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "You are selecting a messaging service for log messages that must include final result message ordering as part of building a data pipeline on Google Cloud. You want to stream input for 5 days and be able to query the current status. You will be storing the data in a searchable repository. How should you set up the input messages?",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. Use Cloud Pub/Sub for input. Attach a timestamp to every message in the publisher.",
+                "explanation": "A is correct because of recommended Google practices; see the links below. https"
+            },
+            {
+                "content": "B. Use Cloud Pub/Sub for input. Attach a unique identifier to every message in the publisher.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Use Apache Kafka on Compute Engine for input. Attach a timestamp to every message in the publisher.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Use Apache Kafka on Compute Engine for input. Attach a unique identifier to every message in the publisher.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "You want to publish system metrics to Google Cloud from a large number of on-prem hypervisors and VMs for analysis and creation of dashboards. You have an existing custom monitoring agent deployed to all the hypervisors and your on-prem metrics system is unable to handle the load. You want to design a system that can collect and store metrics at scale. You don’t want to manage your own time series database. Metrics from all agents should be written to the same table but agents must not have permission to modify or read data written by other agents.What should you do?",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. Modify the monitoring agent to publish protobuf messages to Cloud PubSub. Use a Dataproc cluster or Dataflow job to consume messages from Pubsub and write to BigTable.",
+                "explanation": "A Is correct because Bigtable can store and analyze time series data, and the solution is using managed services which is what the requirements are calling for."
+            },
+            {
+                "content": "B. Modify the monitoring agent to write protobuf messages directly to BigTable.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Modify the monitoring agent to write protobuf messages to HBase deployed on GCE VM Instances",
+                "explanation": ""
+            },
+            {
+                "content": "D. Modify the monitoring agent to write protobuf messages to Cloud Pubsub. Use a Dataproc cluster or Dataflow job to consume messages from Pubsub and write to Cassandra deployed on GCE VM Instances.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "You are designing storage for CSV files and using an I/O-intensive custom Apache Spark transform as part of deploying a data pipeline on Google Cloud. You intend to use ANSI SQL to run queries for your analysts. How should you transform the input data?",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. Use BigQuery for storage. Use Cloud Dataflow to run the transformations.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Use BigQuery for storage. Use Cloud Dataproc to run the transformations.",
+                "explanation": "B is correct because of the requirement to use custom Spark transforms; use Cloud Dataproc. ANSI SQL queries require the use of BigQuery. https"
+            },
+            {
+                "content": "C. Use Cloud Storage for storage. Use Cloud Dataflow to run the transformations.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Use Cloud Storage for storage. Use Cloud Dataproc to run the transformations.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "You are designing a relational data repository on Google Cloud to grow as needed. The data will be transactionally consistent and added from any location in the world. You want to monitor and adjust node count for input traffic, which can spike unpredictably. What should you do?",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. Use Cloud Spanner for storage. Monitor storage usage and increase node count if more than 70% utilized.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Use Cloud Spanner for storage. Monitor CPU utilization and increase node count if more than 70% utilized for your time span.",
+                "explanation": "B is correct because of the requirement to globally scalable transactions—use Cloud Spanner. CPU utilization is the recommended metric for scaling, per Google best practices, linked below. https"
+            },
+            {
+                "content": "C. Use Cloud Bigtable for storage. Monitor data stored and increase node count if more than 70% utilized.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Use Cloud Bigtable for storage. Monitor CPU utilization and increase node count if more than 70% utilized for your time span.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "You have a Spark application that writes data to Cloud Storage in Parquet format. You scheduled the application to run daily using DataProcSparkOperator and Apache Airflow DAG by Cloud Composer. You want to add tasks to the DAG to make the data available to BigQuery users. You want to maximize query speed and configure partitioning and clustering on the table. What should you do?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. Use “BashOperator” to call “bq insert”.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Use “BashOperator” to call “bq cp” with the “–append” flag.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Use “GoogleCloudStorageToBigQueryOperator” with “schema_object” pointing to a schema JSON in Cloud Storage and “source_format” set to “PARQUET”.",
+                "explanation": "C is correct because it loads the data and sets partitioning and clustering. https"
+            },
+            {
+                "content": "D. Use “BigQueryCreateExternalTableOperator” with “schema_object” pointing to a schema JSON in Cloud Storage and “source_format” set to “PARQUET”.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "You have a website that tracks page visits for each user and then creates a Cloud Pub/Sub message with the session ID and URL of the page. You want to create a Cloud Dataflow pipeline that sums the total number of pages visited by each user and writes the result to BigQuery. User sessions timeout after 30 minutes. Which type of Cloud Dataflow window should you choose?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. A single global window",
+                "explanation": ""
+            },
+            {
+                "content": "B. Fixed-time windows with a duration of 30 minutes",
+                "explanation": ""
+            },
+            {
+                "content": "C. Session-based windows with a gap duration of 30 minutes",
+                "explanation": "C is correct because it continues to sum user page visits during their browsing session and completes at the same time as the session timeout. https"
+            },
+            {
+                "content": "D. Sliding-time windows with a duration of 30 minutes and a new window every 5 minute",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "You are designing a basket abandonment system for an ecommerce company. The system will send a message to a user based on these rules: a). No interaction by the user on the site for 1 hour b). Has added more than $30 worth of products to the basket c). Has not completed a transaction. You use Google Cloud Dataflow to process the data and decide if a message should be sent. How should you design the pipeline?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. Use a fixed-time window with a duration of 60 minutes.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Use a sliding time window with a duration of 60 minutes.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Use a session window with a gap time duration of 60 minutes.",
+                "explanation": "C is correct because it will send a message per user after that user is inactive for 60 minutes. https"
+            },
+            {
+                "content": "D. Use a global window with a time based trigger with a delay of 60 minutes.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "You need to stream time-series data in Avro format, and then write this to both BigQuery and Cloud Bigtable simultaneously using Cloud Dataflow. You want to achieve minimal end-to-end latency. Your business requirements state this needs to be completed as quickly as possible. What should you do?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. Create a pipeline and use ParDo transform.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Create a pipeline that groups the data into a PCollection and uses the Combine transform.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Create a pipeline that groups data using a PCollection and then uses Cloud Bigtable and BigQueryIO transforms.",
+                "explanation": "C is correct because this is the right set of transformations that accepts and writes to the required data stores. https"
+            },
+            {
+                "content": "D. Create a pipeline that groups data using a PCollection, and then use Avro I/O transform to write to Cloud Storage. After the data is written, load the data from Cloud Storage into BigQuery and Cloud Bigtable.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Your company’s on-premises Apache Hadoop servers are approaching end-of-life, and IT has decided to migrate the cluster to Google Cloud Dataproc. A like-for-like migration of the cluster would require 50 TB of Google Persistent Disk per node. The CIO is concerned about the cost of using that much block storage. You want to minimize the storage cost of the migration. What should you do?",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. Put the data into Google Cloud Storage.",
+                "explanation": "A is correct because Google recommends using Google Cloud Storage instead of HDFS as it is much more cost effective especially when jobs aren’t running. https"
+            },
+            {
+                "content": "B. Use preemptible virtual machines (VMs) for the Cloud Dataproc cluster.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Tune the Cloud Dataproc cluster so that there is just enough disk for all data.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Migrate some of the cold data into Google Cloud Storage, and keep only the hot data in Persistent Disk.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "You are designing storage for two relational tables that are part of a 10-TB database on Google Cloud. You want to support transactions that scale horizontally. You also want to optimize data for range queries on non-key columns. What should you do?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. Use Cloud SQL for storage. Add secondary indexes to support query patterns.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Use Cloud SQL for storage. Use Cloud Dataflow to transform data to support query patterns.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Use Cloud Spanner for storage. Add secondary indexes to support query patterns.",
+                "explanation": "C is correct because Cloud Spanner scales horizontally, and you can create secondary indexes for the range queries that are required."
+            },
+            {
+                "content": "D. Use Cloud Spanner for storage. Use Cloud Dataflow to transform data to support query patterns.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Your company is streaming real-time sensor data from their factory floor into Bigtable and they have noticed extremely poor performance. How should the row key be redesigned to improve Bigtable performance on queries that populate real-time dashboards?",
+        "kind": "single",
+        "resolution": [
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. Use a row key of the form .",
+                "explanation": ""
+            },
+            {
+                "content": "B. Use a row key of the form .",
+                "explanation": ""
+            },
+            {
+                "content": "C. Use a row key of the form .",
+                "explanation": ""
+            },
+            {
+                "content": "D. Use a row key of the form #.",
+                "explanation": "D is correct because it will allow for retrieval of data based on both sensor id and timestamp but without causing hotspotting. https"
+            }
+        ]
+    },
+    {
+        "title": "You are developing an application on Google Cloud that will automatically generate subject labels for users’ blog posts. You are under competitive pressure to add this feature quickly, and you have no additional developer resources. No one on your team has experience with machine learning. What should you do?",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. Call the Cloud Natural Language API from your application. Process the generated Entity Analysis as labels.",
+                "explanation": "A is correct because it provides a managed service and a fully trained model, and the user is pulling the entities, which is the right label."
+            },
+            {
+                "content": "B. Call the Cloud Natural Language API from your application. Process the generated Sentiment Analysis as labels.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Build and train a text classification model using TensorFlow. Deploy the model using Cloud Machine Learning Engine. Call the model from your application and process the results as labels.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Build and train a text classification model using TensorFlow. Deploy the model using a Kubernetes Engine cluster. Call the model from your application and process the results as labels.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Your company is using WILDCARD tables to query data across multiple tables with similar names. The SQL statement is currently failing with the error shown below. Which table name will make the SQL statement work correctly?#  Syntax error: Expected end of statement but got “-” at [4:11] SELECT age FROM bigquery-public-data.noaa_gsod.gsod WHERE age != 99 AND _TABLE_SUFFIX = ‘1929’ ORDER BY age DESC",
+        "kind": "single",
+        "resolution": [
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. `bigquery-public-data.noaa_gsod.gsod`",
+                "explanation": ""
+            },
+            {
+                "content": "B. bigquery-public-data.noaa_gsod.gsod*",
+                "explanation": ""
+            },
+            {
+                "content": "C. ‘bigquery-public-data.noaa_gsod.gsod*’",
+                "explanation": ""
+            },
+            {
+                "content": "D. `bigquery-public-data.noaa_gsod.gsod*`",
+                "explanation": "D is correct because it follows the correct wildcard syntax of enclosing the table name in backticks and including the * wildcard character. https"
+            }
+        ]
+    },
+    {
+        "title": "You are working on an ML-based application that will transcribe conversations between manufacturing workers. These conversations are in English and between 30-40 sec long. Conversation recordings come from old enterprise radio sets that have a low sampling rate of 8000 Hz, but you have a large dataset of these recorded conversations with their transcriptions. You want to follow Google-recommended practices. How should you proceed with building your application?",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. Use Cloud Speech-to-Text API, and send requests in a synchronous mode.",
+                "explanation": "A is correct because synchronous mode is recommended for short audio files. https"
+            },
+            {
+                "content": "B. Use Cloud Speech-to-Text API, and send requests in an asynchronous mode.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Use Cloud Speech-to-Text API, but resample your captured recordings to a rate of 16000 Hz.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Train your own speech recognition model because you have an uncommon use case and you have a labeled dataset.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "You are developing an application on Google Cloud that will label famous landmarks in users’ photos. You are under competitive pressure to develop a predictive model quickly. You need to keep service costs low. What should you do?",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. Build an application that calls the Cloud Vision API. Inspect the generated MID values to supply the image labels.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Build an application that calls the Cloud Vision API. Pass client image locations as base64-encoded strings.",
+                "explanation": "B is correct because of the requirement to quickly develop a model that generates landmark labels from photos. This is supported in Cloud Vision API; see the link below. https"
+            },
+            {
+                "content": "C. Build and train a classification model with TensorFlow. Deploy the model using Cloud Machine Learning Engine. Pass client image locations as base64-encoded strings.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Build and train a classification model with TensorFlow. Deploy the model using Cloud Machine Learning Engine. Inspect the generated MID values to supply the image labels.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "You are building a data pipeline on Google Cloud. You need to select services that will host a deep neural network machine-learning model also hosted on Google Cloud. You also need to monitor and run jobs that could occasionally fail. What should you do?",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. Use Cloud Machine Learning to host your model. Monitor the status of the Operation object for ‘error’ results.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Use Cloud Machine Learning to host your model. Monitor the status of the Jobs object for ‘failed’ job states.",
+                "explanation": "B is correct because of the requirement to host an ML DNN and Google-recommended monitoring object (Jobs); see the links below. https"
+            },
+            {
+                "content": "C. Use a Kubernetes Engine cluster to host your model. Monitor the status of the Jobs object for ‘failed’ job states.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Use a Kubernetes Engine cluster to host your model. Monitor the status of Operation object for ‘error’ results.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "You work on a regression problem in a natural language processing domain, and you have 100M labeled examples in your dataset. You have randomly shuffled your data and split your dataset into training and test samples (in a 90/10 ratio). After you have trained the neural network and evaluated your model on a test set, you discover that the root-mean-squared error (RMSE) of your model is twice as high on the train set as on the test set. How should you improve the performance of your model?",
+        "kind": "single",
+        "resolution": [
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. Increase the share of the test sample in the train-test split.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Try to collect more data and increase the size of your dataset.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Try out regularization techniques (e.g., dropout or batch normalization) to avoid overfitting.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Increase the complexity of your model by, e.g., introducing an additional layer or increasing the size of vocabularies or n-grams used to avoid underfitting.",
+                "explanation": "D is correct since increasing model complexity generally helps when you have an underfitting problem. https"
+            }
+        ]
+    },
+    {
+        "title": "You are using Cloud Pub/Sub to stream inventory updates from many point-of-sale (POS) terminals into BigQuery. Each update event has the following information: product identifier “prodSku”, change increment “quantityDelta”, POS identification “termId”, and “messageId” which is created for each push attempt from the terminal. During a network outage, you discovered that duplicated messages were sent, causing the inventory system to over-count the changes. You determine that the terminal application has design problems and may send the same event more than once during push retries. You want to ensure that the inventory update is accurate. What should you do?",
+        "kind": "single",
+        "resolution": [
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. Inspect the “publishTime” of each message. Make sure that messages whose “publishTime” values match rows in the BigQuery table are discarded.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Inspect the “messageId” of each message. Make sure that any messages whose “messageId” values match corresponding rows in the BigQuery table are discarded.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Instead of specifying a change increment for “quantityDelta”, always use the derived inventory value after the increment has been applied. Name the new attribute “adjustedQuantity”.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Add another attribute orderId to the message payload to mark the unique check-out order across all terminals. Make sure that messages whose “orderId” and “prodSku” values match corresponding rows in the BigQuery table are discarded.",
+                "explanation": "D is correct because the client application must include a unique identifier to disambiguate possible duplicates due to push retries. https"
+            }
+        ]
+    },
+    {
+        "title": "You designed a database for patient records as a pilot project to cover a few hundred patients in three clinics. Your design used a single database table to represent all patients and their visits, and you used self-joins to generate reports. The server resource utilization was at 50%. Since then, the scope of the project has expanded. The database table must now store 100 times more patient records. You can no longer run the reports, because they either take too long or they encounter errors with insufficient compute resources. How should you adjust the database design?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. Add capacity (memory and disk space) to the database server by the order of 200.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Shard the tables into smaller ones based on date ranges, and only generate reports with pre-specified date ranges.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Normalize the master patient-record table into the patients table and the visits table, and create other necessary tables to avoid self-join.",
+                "explanation": "C is correct because this option provides the least amount of inconvenience over using pre-specified date ranges or one table per clinic while also increasing performance due to avoiding self-joins. https"
+            },
+            {
+                "content": "D. Partition the table into smaller tables, with one for each clinic. Run queries against the smaller table pairs, and use unions for consolidated reports.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Your startup has never implemented a formal security policy. Currently, everyone in the company has access to the datasets stored in Google BigQuery. Teams have the freedom to use the service as they see fit, and they have not documented their use cases. You have been asked to secure the data warehouse. You need to discover what everyone is doing. What should you do first?",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. Use Google Stackdriver Audit Logs to review data access.",
+                "explanation": "A is correct because this is the best way to get granular access to data showing which users are accessing which data. https"
+            },
+            {
+                "content": "B. Get the identity and access management (IAM) policy of each table.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Use Stackdriver Monitoring to see the usage of BigQuery query slots.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Use the Google Cloud Billing API to see what account the warehouse is being billed to.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "You created a job which runs daily to import highly sensitive data from an on-premises location to Cloud Storage. You also set up a streaming data insert into Cloud Storage via a Kafka node that is running on a Compute Engine instance. You need to encrypt the data at rest and supply your own encryption key. Your key should not be stored in the Google Cloud. What should you do?",
+        "kind": "single",
+        "resolution": [
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. Create a dedicated service account, and use encryption at rest to reference your data stored in Cloud Storage and Compute Engine data as part of your API service calls.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Upload your own encryption key to Cloud Key Management Service, and use it to encrypt your data in Cloud Storage. Use your uploaded encryption key and reference it as part of your API service calls to encrypt your data in the Kafka node hosted on Compute Engine.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Upload your own encryption key to Cloud Key Management Service, and use it to encrypt your data in your Kafka node hosted on Compute Engine.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Supply your own encryption key, and reference it as part of your API service calls to encrypt your data in Cloud Storage and your Kafka node hosted on Compute Engine.",
+                "explanation": "D is correct because the scenario requires you to use your own key and also to not store your key on Compute Engine, and also this is a Google recommended practice."
+            }
+        ]
+    },
+    {
+        "title": "You are working on a project with two compliance requirements. The first requirement states that your developers should be able to see the Google Cloud Platform billing charges for only their own projects. The second requirement states that your finance team members can set budgets and view the current charges for all projects in the organization. The finance team should not be able to view the project contents. You want to set permissions. What should you do?",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. Add the finance team members to the default IAM Owner role. Add the developers to a custom role that allows them to see their own spend only.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Add the finance team members to the Billing Administrator role for each of the billing accounts that they need to manage. Add the developers to the Viewer role for the Project.",
+                "explanation": "B is correct because it uses the principle of least privilege for IAM roles; use the Billing Administrator IAM role for that job function. https"
+            },
+            {
+                "content": "C. Add the developers and finance managers to the Viewer role for the Project.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Add the finance team to the Viewer role for the Project. Add the developers to the Security Reviewer role for each of the billing accounts.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Suppose you have a table that includes a nested column called “city” inside a column called “person”, but when you try to submit the following query in BigQuery, it gives you an error. SELECT person FROM `project1.example.table1` WHERE city = “London” How would you the error?",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. Add “, UNNEST(person)” before the WHERE clause.",
+                "explanation": "A"
+            },
+            {
+                "content": "B. Change “person” to “person.city”.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Change “person” to “city.person”.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Add “, UNNEST(city)” before the WHERE clause.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "What are two of the benefits of using denormalized data structures in BigQuery?",
+        "kind": "multiple",
+        "resolution": [
+            1,
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. Reduces the amount of data processed, reduces the amount of storage required",
+                "explanation": ""
+            },
+            {
+                "content": "B. Increases query speed, makes queries simpler",
+                "explanation": "B,D"
+            },
+            {
+                "content": "C. Reduces the amount of storage required, increases query speed",
+                "explanation": ""
+            },
+            {
+                "content": "D. Reduces the amount of data processed, increases query speed",
+                "explanation": "B,D"
+            }
+        ]
+    },
+    {
+        "title": "Which of these statements about exporting data from BigQuery is false?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. To export more than 1 GB of data, you need to put a wildcard in the destination filename.",
+                "explanation": ""
+            },
+            {
+                "content": "B. The only supported export destination is Google Cloud Storage.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Data can only be exported in JSON or Avro format.",
+                "explanation": "C"
+            },
+            {
+                "content": "D. The only compression option available is GZIP.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "What are all of the BigQuery operations that Google charges for?",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. Storage, queries, and streaming inserts",
+                "explanation": "A"
+            },
+            {
+                "content": "B. Storage, queries, and loading data from a file",
+                "explanation": ""
+            },
+            {
+                "content": "C. Storage, queries, and exporting data",
+                "explanation": ""
+            },
+            {
+                "content": "D. Queries and streaming inserts",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which of the following is not possible using primitive roles?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. Give a user viewer access to BigQuery and owner access to Google Compute Engine instances.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Give UserA owner access and UserB editor access for all datasets in a project.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Give a user access to view all datasets in a project, but not run queries on them.",
+                "explanation": "C"
+            },
+            {
+                "content": "D. Give GroupA owner access and GroupB editor access for all datasets in a project.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which of these statements about BigQuery caching is true?",
+        "kind": "single",
+        "resolution": [
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. By default, a query’s results are not cached.",
+                "explanation": ""
+            },
+            {
+                "content": "B. BigQuery caches query results for 48 hours.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Query results are cached even if you specify a destination table.",
+                "explanation": ""
+            },
+            {
+                "content": "D. There is no charge for a query that retrieves its results from cache.",
+                "explanation": "D"
+            }
+        ]
+    },
+    {
+        "title": "Which of these sources can you not load data into BigQuery from?",
+        "kind": "single",
+        "resolution": [
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. File upload",
+                "explanation": ""
+            },
+            {
+                "content": "B. Google Drive",
+                "explanation": ""
+            },
+            {
+                "content": "C. Google Cloud Storage",
+                "explanation": ""
+            },
+            {
+                "content": "D. Google Cloud SQL",
+                "explanation": "D"
+            }
+        ]
+    },
+    {
+        "title": "Which of the following statements about Legacy SQL and Standard SQL is not true?",
+        "kind": "single",
+        "resolution": [
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. Standard SQL is the preferred query language for BigQuery.",
+                "explanation": ""
+            },
+            {
+                "content": "B. If you write a query in Legacy SQL, it might generate an error if you try to run it with Standard SQL.",
+                "explanation": ""
+            },
+            {
+                "content": "C. One difference between the two query languages is how you specify fully-qualified table names (i.e. table names that include their associated project name).",
+                "explanation": ""
+            },
+            {
+                "content": "D. You need to set a query language for each dataset and the default is Standard SQL.",
+                "explanation": "D"
+            }
+        ]
+    },
+    {
+        "title": "How would you query specific partitions in a BigQuery table?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. Use the DAY column in the WHERE clause",
+                "explanation": ""
+            },
+            {
+                "content": "B. Use the EXTRACT(DAY) clause",
+                "explanation": ""
+            },
+            {
+                "content": "C. Use the __PARTITIONTIME pseudo-column in the WHERE clause",
+                "explanation": "C"
+            },
+            {
+                "content": "D. Use DATE BETWEEN in the WHERE clause",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which SQL keyword can be used to reduce the number of columns processed by BigQuery?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. BETWEEN",
+                "explanation": ""
+            },
+            {
+                "content": "B. WHERE",
+                "explanation": ""
+            },
+            {
+                "content": "C. SELECT",
+                "explanation": "C"
+            },
+            {
+                "content": "D. LIMIT",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "To give a user read permission for only the first three columns of a table, which access control method would you use?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. Primitive role",
+                "explanation": ""
+            },
+            {
+                "content": "B. Predefined role",
+                "explanation": ""
+            },
+            {
+                "content": "C. Authorized view",
+                "explanation": "C"
+            },
+            {
+                "content": "D. It’s not possible to give access to only the first three columns of a table.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "What are two methods that can be used to denormalize tables in BigQuery?",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. 1) Split table into multiple tables;\n 2) Use a partitioned table",
+                "explanation": ""
+            },
+            {
+                "content": "B. 1) Join tables into one table;\n 2) Use nested repeated fields",
+                "explanation": "B"
+            },
+            {
+                "content": "C. 1) Use a partitioned table;\n 2) Join tables into one table",
+                "explanation": ""
+            },
+            {
+                "content": "D. 1) Use nested repeated fields;\n 2) Use a partitioned table",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which of these is not a supported method of putting data into a partitioned table?",
+        "kind": "single",
+        "resolution": [
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. If you have existing data in a separate file for each day, then create a partitioned table and upload each file into the appropriate partition.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Run a query to get the records for a specific day from an existing table and for the destination table, specify a partitioned table ending with the day in the format “$YYYYMMDD”.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Create a partitioned table and stream new records to it every day.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Use ORDER BY to put a table’s rows into chronological order and then change the table’s type to “Partitioned”.",
+                "explanation": "D"
+            }
+        ]
+    },
+    {
+        "title": "Which of these operations can you perform from the BigQuery Web UI?",
+        "kind": "multiple",
+        "resolution": [
+            1,
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. Upload a file in SQL format.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Load data with nested and repeated fields.",
+                "explanation": "BD"
+            },
+            {
+                "content": "C. Upload a 20 MB file.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Upload multiple files using a wildcard.",
+                "explanation": "BD"
+            }
+        ]
+    },
+    {
+        "title": "Which methods can be used to reduce the number of rows processed by BigQuery?",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. Splitting tables into multiple tables; putting data in partitions",
+                "explanation": "A"
+            },
+            {
+                "content": "B. Splitting tables into multiple tables; putting data in partitions; using the LIMIT clause",
+                "explanation": ""
+            },
+            {
+                "content": "C. Putting data in partitions; using the LIMIT clause",
+                "explanation": ""
+            },
+            {
+                "content": "D. Splitting tables into multiple tables; using the LIMIT clause",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Why do you need to split a machine learning dataset into training data and test data?",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. So you can try two different sets of features",
+                "explanation": ""
+            },
+            {
+                "content": "B. To make sure your model is generalized for more than just the training data",
+                "explanation": "B"
+            },
+            {
+                "content": "C. To allow you to create unit tests in your code",
+                "explanation": ""
+            },
+            {
+                "content": "D. So you can use one dataset for a wide model and one for a deep model",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which of these numbers are adjusted by a neural network as it learns from a training dataset (select 2 answers)?",
+        "kind": "multiple",
+        "resolution": [
+            0,
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. Weights",
+                "explanation": "AB"
+            },
+            {
+                "content": "B. Biases",
+                "explanation": "AB"
+            },
+            {
+                "content": "C. Continuous features",
+                "explanation": ""
+            },
+            {
+                "content": "D. Input values",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "The CUSTOM tier for Cloud Machine Learning Engine allows you to specify the number of which types of cluster nodes?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. Workers",
+                "explanation": ""
+            },
+            {
+                "content": "B. Masters, workers, and parameter servers",
+                "explanation": ""
+            },
+            {
+                "content": "C. Workers and parameter servers",
+                "explanation": "C"
+            },
+            {
+                "content": "D. Parameter servers",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which software libraries are supported by Cloud Machine Learning Engine?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. Theano and TensorFlow",
+                "explanation": ""
+            },
+            {
+                "content": "B. Theano and Torch",
+                "explanation": ""
+            },
+            {
+                "content": "C. TensorFlow",
+                "explanation": "C"
+            },
+            {
+                "content": "D. TensorFlow and Torch",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which TensorFlow function can you use to configure a categorical column if you don’t know all of the possible values for that column?",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. categorical_column_with_vocabulary_list",
+                "explanation": ""
+            },
+            {
+                "content": "B. categorical_column_with_hash_bucket",
+                "explanation": "B"
+            },
+            {
+                "content": "C. categorical_column_with_unknown_values",
+                "explanation": ""
+            },
+            {
+                "content": "D. sparse_column_with_keys",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which of the following statements about the Wide & Deep Learning model are true? (Select 2 answers.)",
+        "kind": "multiple",
+        "resolution": [
+            0,
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. The wide model is used for memorization, while the deep model is used for generalization.",
+                "explanation": "AB"
+            },
+            {
+                "content": "B. A good use for the wide and deep model is a recommender system.",
+                "explanation": "AB"
+            },
+            {
+                "content": "C. The wide model is used for generalization, while the deep model is used for memorization.",
+                "explanation": ""
+            },
+            {
+                "content": "D. A good use for the wide and deep model is a small-scale linear regression problem.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "To run a TensorFlow training job on your own computer using Cloud Machine Learning Engine, what would your command start with?",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. gcloud ml-engine local train",
+                "explanation": "A"
+            },
+            {
+                "content": "B. gcloud ml-engine jobs submit training",
+                "explanation": ""
+            },
+            {
+                "content": "C. gcloud ml-engine jobs submit training local",
+                "explanation": ""
+            },
+            {
+                "content": "D. You can’t run a TensorFlow program on your own computer using Cloud ML Engine .",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "If you want to create a machine learning model that predicts the price of a particular stock based on its recent price history, what type of estimator should you use?",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. Unsupervised learning",
+                "explanation": ""
+            },
+            {
+                "content": "B. Regressor",
+                "explanation": "B"
+            },
+            {
+                "content": "C. Classifier",
+                "explanation": ""
+            },
+            {
+                "content": "D. Clustering estimator",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Suppose you have a dataset of images that are each labeled as to whether or not they contain a human face. To create a neural network that recognizes human faces in images using this labeled dataset, what approach would likely be the most effective?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. Use K-means Clustering to detect faces in the pixels.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Use feature engineering to add features for eyes, noses, and mouths to the input data.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Use deep learning by creating a neural network with multiple hidden layers to automatically detect features of faces.",
+                "explanation": "C"
+            },
+            {
+                "content": "D. Build a neural network with an input layer of pixels, a hidden layer, and an output layer with two categories.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "What are two of the characteristics of using online prediction rather than batch prediction?",
+        "kind": "multiple",
+        "resolution": [
+            1,
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. It is optimized to handle a high volume of data instances in a job and to run more complex models.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Predictions are returned in the response message.",
+                "explanation": "BD"
+            },
+            {
+                "content": "C. Predictions are written to output files in a Cloud Storage location that you specify.",
+                "explanation": ""
+            },
+            {
+                "content": "D. It is optimized to minimize the latency of serving predictions.",
+                "explanation": "BD"
+            }
+        ]
+    },
+    {
+        "title": "Which of these are examples of a value in a sparse vector? (Select 2 answers.)",
+        "kind": "multiple",
+        "resolution": [
+            2,
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. [0, 5, 0, 0, 0, 0]",
+                "explanation": ""
+            },
+            {
+                "content": "B. [0, 0, 0, 1, 0, 0, 1]",
+                "explanation": ""
+            },
+            {
+                "content": "C. [0, 1]",
+                "explanation": "CD"
+            },
+            {
+                "content": "D. [1, 0, 0, 0, 0, 0, 0]",
+                "explanation": "CD"
+            }
+        ]
+    },
+    {
+        "title": "How can you get a neural network to learn about relationships between categories in a categorical feature?",
+        "kind": "single",
+        "resolution": [
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. Create a multi-hot column",
+                "explanation": ""
+            },
+            {
+                "content": "B. Create a one-hot column",
+                "explanation": ""
+            },
+            {
+                "content": "C. Create a hash bucket",
+                "explanation": ""
+            },
+            {
+                "content": "D. Create an embedding column",
+                "explanation": "D"
+            }
+        ]
+    },
+    {
+        "title": "If a dataset contains rows with individual people and columns for year of birth, country, and income, how many of the columns are continuous and how many are categorical?",
+        "kind": "single",
+        "resolution": [
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. 1 continuous and 2 categorical",
+                "explanation": ""
+            },
+            {
+                "content": "B. 3 categorical",
+                "explanation": ""
+            },
+            {
+                "content": "C. 3 continuous",
+                "explanation": ""
+            },
+            {
+                "content": "D. 2 continuous and 1 categorical",
+                "explanation": "D"
+            }
+        ]
+    },
+    {
+        "title": "Which of the following are examples of hyperparameters? (Select 2 answers.)",
+        "kind": "multiple",
+        "resolution": [
+            0,
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. Number of hidden layers",
+                "explanation": "AB"
+            },
+            {
+                "content": "B. Number of nodes in each hidden layer",
+                "explanation": "AB"
+            },
+            {
+                "content": "C. Biases",
+                "explanation": ""
+            },
+            {
+                "content": "D. Weights",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which of the following are feature engineering techniques? (Select 2 answers)",
+        "kind": "multiple",
+        "resolution": [
+            2,
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. Hidden feature layers",
+                "explanation": ""
+            },
+            {
+                "content": "B. Feature prioritization",
+                "explanation": ""
+            },
+            {
+                "content": "C. Crossed feature columns",
+                "explanation": "CD"
+            },
+            {
+                "content": "D. Bucketization of a continuous feature",
+                "explanation": "CD"
+            }
+        ]
+    },
+    {
+        "title": "You want to use a BigQuery table as a data sink. In which writing mode(s) can you use BigQuery as a sink?",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. Both batch and streaming",
+                "explanation": "A"
+            },
+            {
+                "content": "B. BigQuery cannot be used as a sink",
+                "explanation": ""
+            },
+            {
+                "content": "C. Only batch",
+                "explanation": ""
+            },
+            {
+                "content": "D. Only streaming",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "You have a job that you want to cancel. It is a streaming pipeline, and you want to ensure that any data that is in-flight is processed and written to the output. Which of the following commands can you use on the Dataflow monitoring console to stop the pipeline job?",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. Cancel",
+                "explanation": ""
+            },
+            {
+                "content": "B. Drain",
+                "explanation": "B"
+            },
+            {
+                "content": "C. Stop",
+                "explanation": ""
+            },
+            {
+                "content": "D. Finish",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "When running a pipeline that has a BigQuery source, on your local machine, you continue to get permission denied errors. What could be the reason for that?",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. Your gcloud does not have access to the BigQuery resources",
+                "explanation": "A"
+            },
+            {
+                "content": "B. BigQuery cannot be accessed from local machines",
+                "explanation": ""
+            },
+            {
+                "content": "C. You are missing gcloud on your machine",
+                "explanation": ""
+            },
+            {
+                "content": "D. Pipelines cannot be run locally",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "What Dataflow concept determines when a Window’s contents should be output based on certain criteria being met?",
+        "kind": "single",
+        "resolution": [
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. Sessions",
+                "explanation": ""
+            },
+            {
+                "content": "B. OutputCriteria",
+                "explanation": ""
+            },
+            {
+                "content": "C. Windows",
+                "explanation": ""
+            },
+            {
+                "content": "D. Triggers",
+                "explanation": "D"
+            }
+        ]
+    },
+    {
+        "title": "Which of the following is NOT one of the three main types of triggers that Dataflow supports?",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. Trigger based on element size in bytes",
+                "explanation": "A"
+            },
+            {
+                "content": "B. Trigger that is a combination of other triggers",
+                "explanation": ""
+            },
+            {
+                "content": "C. Trigger based on element count",
+                "explanation": ""
+            },
+            {
+                "content": "D. Trigger based on time",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which Java SDK class can you use to run your Dataflow programs locally?",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. LocalRunner",
+                "explanation": ""
+            },
+            {
+                "content": "B. DirectPipelineRunner",
+                "explanation": "B"
+            },
+            {
+                "content": "C. MachineRunner",
+                "explanation": ""
+            },
+            {
+                "content": "D. LocalPipelineRunner",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "The Dataflow SDKs have been recently transitioned into which Apache service?",
+        "kind": "single",
+        "resolution": [
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. Apache Spark",
+                "explanation": ""
+            },
+            {
+                "content": "B. Apache Hadoop",
+                "explanation": ""
+            },
+            {
+                "content": "C. Apache Kafka",
+                "explanation": ""
+            },
+            {
+                "content": "D. Apache Beam",
+                "explanation": "D"
+            }
+        ]
+    },
+    {
+        "title": "The _________ for Cloud Bigtable makes it possible to use Cloud Bigtable in a Cloud Dataflow pipeline.",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. Cloud Dataflow connector",
+                "explanation": "A"
+            },
+            {
+                "content": "B. DataFlow SDK",
+                "explanation": ""
+            },
+            {
+                "content": "C. BiqQuery API",
+                "explanation": ""
+            },
+            {
+                "content": "D. BigQuery Data Transfer Service",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Does Dataflow process batch data pipelines or streaming data pipelines?",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. Only Batch Data Pipelines",
+                "explanation": ""
+            },
+            {
+                "content": "B. Both Batch and Streaming Data Pipelines",
+                "explanation": "B"
+            },
+            {
+                "content": "C. Only Streaming Data Pipelines",
+                "explanation": ""
+            },
+            {
+                "content": "D. None of the above",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "You are planning to use Google’s Dataflow SDK to analyze customer data such as displayed below. Your project requirement is to extract only the customer name from the data source and then write to an output PCollection. Tom,555 X street – Tim,553 Y street – Sam, 111 Z street – Which operation is best suited for the above data processing requirement?",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. ParDo",
+                "explanation": "A"
+            },
+            {
+                "content": "B. Sink API",
+                "explanation": ""
+            },
+            {
+                "content": "C. Source API",
+                "explanation": ""
+            },
+            {
+                "content": "D. Data extraction",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which Cloud Dataflow / Beam feature should you use to aggregate data in an unbounded data source every hour based on the time when the data entered the pipeline?",
+        "kind": "single",
+        "resolution": [
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. An hourly watermark",
+                "explanation": ""
+            },
+            {
+                "content": "B. An event time trigger",
+                "explanation": ""
+            },
+            {
+                "content": "C. The with Allowed Lateness method",
+                "explanation": ""
+            },
+            {
+                "content": "D. A processing time trigger",
+                "explanation": "D"
+            }
+        ]
+    },
+    {
+        "title": "Which of the following is NOT true about Dataflow pipelines?",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. Dataflow pipelines are tied to Dataflow, and cannot be run on any other runner",
+                "explanation": "A"
+            },
+            {
+                "content": "B. Dataflow pipelines can consume data from other Google Cloud services",
+                "explanation": ""
+            },
+            {
+                "content": "C. Dataflow pipelines can be programmed in Java",
+                "explanation": ""
+            },
+            {
+                "content": "D. Dataflow pipelines use a unified programming model, so can work both with streaming and batch data sources",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "You are developing a software application using Google’s Dataflow SDK, and want to use conditional, for loops and other complex programming structures to create a branching pipeline. Which component will be used for the data processing operation?",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. PCollection",
+                "explanation": ""
+            },
+            {
+                "content": "B. Transform",
+                "explanation": "B"
+            },
+            {
+                "content": "C. Pipeline",
+                "explanation": ""
+            },
+            {
+                "content": "D. Sink API",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which of the following IAM roles does your Compute Engine account require to be able to run pipeline jobs?",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. dataflow.worker",
+                "explanation": "A"
+            },
+            {
+                "content": "B. dataflow.compute",
+                "explanation": ""
+            },
+            {
+                "content": "C. dataflow.developer",
+                "explanation": ""
+            },
+            {
+                "content": "D. dataflow.viewer",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which of the following is not true about Dataflow pipelines?",
+        "kind": "single",
+        "resolution": [
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. Pipelines are a set of operations",
+                "explanation": ""
+            },
+            {
+                "content": "B. Pipelines represent a data processing job",
+                "explanation": ""
+            },
+            {
+                "content": "C. Pipelines represent a directed graph of steps",
+                "explanation": ""
+            },
+            {
+                "content": "D. Pipelines can share data between instances",
+                "explanation": "D"
+            }
+        ]
+    },
+    {
+        "title": "By default, which of the following windowing behavior does Dataflow apply to unbounded data sets?",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. Windows at every 100 MB of data",
+                "explanation": ""
+            },
+            {
+                "content": "B. Single, Global Window",
+                "explanation": "B"
+            },
+            {
+                "content": "C. Windows at every 1 minute",
+                "explanation": ""
+            },
+            {
+                "content": "D. Windows at every 10 minutes",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which of the following job types are supported by Cloud Dataproc (select 3 answers)?",
+        "kind": "multiple",
+        "resolution": [
+            0,
+            1,
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. Hive",
+                "explanation": "ABD"
+            },
+            {
+                "content": "B. Pig",
+                "explanation": "ABD"
+            },
+            {
+                "content": "C. YARN",
+                "explanation": ""
+            },
+            {
+                "content": "D. Spark",
+                "explanation": "ABD"
+            }
+        ]
+    },
+    {
+        "title": "What are the minimum permissions needed for a service account used with Google Dataproc?",
+        "kind": "single",
+        "resolution": [
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. Execute to Google Cloud Storage; write to Google Cloud Logging",
+                "explanation": ""
+            },
+            {
+                "content": "B. Write to Google Cloud Storage; read to Google Cloud Logging",
+                "explanation": ""
+            },
+            {
+                "content": "C. Execute to Google Cloud Storage; execute to Google Cloud Logging",
+                "explanation": ""
+            },
+            {
+                "content": "D. Read and write to Google Cloud Storage; write to Google Cloud Logging",
+                "explanation": "D"
+            }
+        ]
+    },
+    {
+        "title": "Which role must be assigned to a service account used by the virtual machines in a Dataproc cluster so they can execute jobs?",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. Dataproc Worker",
+                "explanation": "A"
+            },
+            {
+                "content": "B. Dataproc Viewer",
+                "explanation": ""
+            },
+            {
+                "content": "C. Dataproc Runner",
+                "explanation": ""
+            },
+            {
+                "content": "D. Dataproc Editor",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "When creating a new Cloud Dataproc cluster with the projects.regions.clusters.create operation, these four values are required: project, region, name, and ____.",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. zone",
+                "explanation": "A"
+            },
+            {
+                "content": "B. node",
+                "explanation": ""
+            },
+            {
+                "content": "C. label",
+                "explanation": ""
+            },
+            {
+                "content": "D. type",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which Google Cloud Platform service is an alternative to Hadoop with Hive?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. Cloud Dataflow",
+                "explanation": ""
+            },
+            {
+                "content": "B. Cloud Bigtable",
+                "explanation": ""
+            },
+            {
+                "content": "C. BigQuery",
+                "explanation": "C"
+            },
+            {
+                "content": "D. Cloud Datastore",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which of these rules apply when you add preemptible workers to a Dataproc cluster (select 2 answers)?",
+        "kind": "multiple",
+        "resolution": [
+            1,
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. Preemptible workers cannot use persistent disk.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Preemptible workers cannot store data.",
+                "explanation": "BD"
+            },
+            {
+                "content": "C. If a preemptible worker is reclaimed, then a replacement worker must be added manually.",
+                "explanation": ""
+            },
+            {
+                "content": "D. A Dataproc cluster cannot have only preemptible workers.",
+                "explanation": "BD"
+            }
+        ]
+    },
+    {
+        "title": "When using Cloud Dataproc clusters, you can access the YARN web interface by configuring a browser to connect through a ____ proxy.",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. HTTPS",
+                "explanation": ""
+            },
+            {
+                "content": "B. VPN",
+                "explanation": ""
+            },
+            {
+                "content": "C. SOCKS",
+                "explanation": "C"
+            },
+            {
+                "content": "D. HTTP",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Cloud Dataproc is a managed Apache Hadoop and Apache _____ service.",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. Blaze",
+                "explanation": ""
+            },
+            {
+                "content": "B. Spark",
+                "explanation": "B"
+            },
+            {
+                "content": "C. Fire",
+                "explanation": ""
+            },
+            {
+                "content": "D. Ignite",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which action can a Cloud Dataproc Viewer perform?",
+        "kind": "single",
+        "resolution": [
+            3
+        ],
+        "answers": [
+            {
+                "content": "A. Submit a job.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Create a cluster.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Delete a cluster.",
+                "explanation": ""
+            },
+            {
+                "content": "D. List the jobs.",
+                "explanation": "D"
+            }
+        ]
+    },
+    {
+        "title": "Cloud Dataproc charges you only for what you really use with _____ billing.",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. month-by-month",
+                "explanation": ""
+            },
+            {
+                "content": "B. minute-by-minute",
+                "explanation": "B"
+            },
+            {
+                "content": "C. week-by-week",
+                "explanation": ""
+            },
+            {
+                "content": "D. hour-by-hour",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "The YARN ResourceManager and the HDFS NameNode interfaces are available on a Cloud Dataproc cluster ____.",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. application node",
+                "explanation": ""
+            },
+            {
+                "content": "B. conditional node",
+                "explanation": ""
+            },
+            {
+                "content": "C. master node",
+                "explanation": "C"
+            },
+            {
+                "content": "D. worker node",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which of these is NOT a way to customize the software on Dataproc cluster instances?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. Set initialization actions",
+                "explanation": ""
+            },
+            {
+                "content": "B. Modify configuration files using cluster properties",
+                "explanation": ""
+            },
+            {
+                "content": "C. Configure the cluster using Cloud Deployment Manager",
+                "explanation": "C"
+            },
+            {
+                "content": "D. Log into the master node and make changes from there",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "In order to securely transfer web traffic data from your computer’s web browser to the Cloud Dataproc cluster you should use a(n) _____.",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. VPN connection",
+                "explanation": ""
+            },
+            {
+                "content": "B. Special browser",
+                "explanation": ""
+            },
+            {
+                "content": "C. SSH tunnel",
+                "explanation": "C"
+            },
+            {
+                "content": "D. FTP connection",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "All Google Cloud Bigtable client requests go through a front-end server ______ they are sent to a Cloud Bigtable node.",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. before",
+                "explanation": "A"
+            },
+            {
+                "content": "B. after",
+                "explanation": ""
+            },
+            {
+                "content": "C. only if",
+                "explanation": ""
+            },
+            {
+                "content": "D. once",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "What is the general recommendation when designing your row keys for a Cloud Bigtable schema?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. Include multiple time series values within the row key",
+                "explanation": ""
+            },
+            {
+                "content": "B. Keep the row keep as an 8 bit integer",
+                "explanation": ""
+            },
+            {
+                "content": "C. Keep your row key reasonably short",
+                "explanation": "C"
+            },
+            {
+                "content": "D. Keep your row key as long as the field permits",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which of the following statements is NOT true regarding Bigtable access roles?",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. Using IAM roles, you cannot give a user access to only one table in a project, rather than all tables in a project.",
+                "explanation": ""
+            },
+            {
+                "content": "B. To give a user access to only one table in a project, grant the user the Bigtable Editor role for that table.",
+                "explanation": "B"
+            },
+            {
+                "content": "C. You can configure access control only at the project level.",
+                "explanation": ""
+            },
+            {
+                "content": "D. To give a user access to only one table in a project, you must configure access through your application.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "For the best possible performance, what is the recommended zone for your Compute Engine instance and Cloud Bigtable instance?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. Have the Compute Engine instance in the furthest zone from the Cloud Bigtable instance.",
+                "explanation": ""
+            },
+            {
+                "content": "B. Have both the Compute Engine instance and the Cloud Bigtable instance to be in different zones.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Have both the Compute Engine instance and the Cloud Bigtable instance to be in the same zone.",
+                "explanation": "C"
+            },
+            {
+                "content": "D. Have the Cloud Bigtable instance to be in the same zone as all of the consumers of your data.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which row keys are likely to cause a disproportionate number of reads and/or writes on a particular node in a Bigtable cluster (select 2 answers)?",
+        "kind": "multiple",
+        "resolution": [
+            0,
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. A sequential numeric ID",
+                "explanation": "AB"
+            },
+            {
+                "content": "B. A timestamp followed by a stock symbol",
+                "explanation": "AB"
+            },
+            {
+                "content": "C. A non-sequential numeric ID",
+                "explanation": ""
+            },
+            {
+                "content": "D. A stock symbol followed by a timestamp",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "When a Cloud Bigtable node fails, ____ is lost.",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. all data",
+                "explanation": ""
+            },
+            {
+                "content": "B. no data",
+                "explanation": "B"
+            },
+            {
+                "content": "C. the last transaction",
+                "explanation": ""
+            },
+            {
+                "content": "D. the time dimension",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which is not a valid reason for poor Cloud Bigtable performance?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. The workload isn’t appropriate for Cloud Bigtable.",
+                "explanation": ""
+            },
+            {
+                "content": "B. The table’s schema is not designed correctly.",
+                "explanation": ""
+            },
+            {
+                "content": "C. The Cloud Bigtable cluster has too many nodes.",
+                "explanation": "C"
+            },
+            {
+                "content": "D. There are issues with the network connection.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which is the preferred method to use to avoid hotspotting in time series data in Bigtable?",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. Field promotion",
+                "explanation": "A"
+            },
+            {
+                "content": "B. Randomization",
+                "explanation": ""
+            },
+            {
+                "content": "C. Salting",
+                "explanation": ""
+            },
+            {
+                "content": "D. Hashing",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "When you design a Google Cloud Bigtable schema it is recommended that you _________.",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. Avoid schema designs that are based on NoSQL concepts",
+                "explanation": ""
+            },
+            {
+                "content": "B. Create schema designs that are based on a relational database design",
+                "explanation": ""
+            },
+            {
+                "content": "C. Avoid schema designs that require atomicity across rows",
+                "explanation": "C"
+            },
+            {
+                "content": "D. Create schema designs that require atomicity across rows",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Which of the following is NOT a valid use case to select HDD (hard disk drives) as the storage for Google Cloud Bigtable?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. You expect to store at least 10 TB of data.",
+                "explanation": ""
+            },
+            {
+                "content": "B. You will mostly run batch workloads with scans and writes, rather than frequently executing random reads of a small number of rows.",
+                "explanation": ""
+            },
+            {
+                "content": "C. You need to integrate with Google BigQuery.",
+                "explanation": "C"
+            },
+            {
+                "content": "D. You will not use the data to back a user-facing or latency-sensitive application.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Cloud Bigtable is Google’s ______ Big Data database service.",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. Relational",
+                "explanation": ""
+            },
+            {
+                "content": "B. mySQL",
+                "explanation": ""
+            },
+            {
+                "content": "C. NoSQL",
+                "explanation": "C"
+            },
+            {
+                "content": "D. SQL Server",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "When you store data in Cloud Bigtable, what is the recommended minimum amount of stored data?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. 500 TB",
+                "explanation": ""
+            },
+            {
+                "content": "B. 1 GB",
+                "explanation": ""
+            },
+            {
+                "content": "C. 1 TB",
+                "explanation": "C"
+            },
+            {
+                "content": "D. 500 GB",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "If you’re running a performance test that depends upon Cloud Bigtable, all the choices except one below are recommended steps. Which is NOT a recommended step to follow?",
+        "kind": "single",
+        "resolution": [
+            0
+        ],
+        "answers": [
+            {
+                "content": "A. Do not use a production instance.",
+                "explanation": "A"
+            },
+            {
+                "content": "B. Run your test for at least 10 minutes.",
+                "explanation": ""
+            },
+            {
+                "content": "C. Before you test, run a heavy pre-test for several minutes.",
+                "explanation": ""
+            },
+            {
+                "content": "D. Use at least 300 GB of data.",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Cloud Bigtable is a recommended option for storing very large amounts of ____________________________?",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. multi-keyed data with very high latency",
+                "explanation": ""
+            },
+            {
+                "content": "B. multi-keyed data with very low latency",
+                "explanation": ""
+            },
+            {
+                "content": "C. single-keyed data with very low latency",
+                "explanation": "C"
+            },
+            {
+                "content": "D. single-keyed data with very high latency",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "Google Cloud Bigtable indexes a single value in each row. This value is called the _______.",
+        "kind": "single",
+        "resolution": [
+            2
+        ],
+        "answers": [
+            {
+                "content": "A. primary key",
+                "explanation": ""
+            },
+            {
+                "content": "B. unique key",
+                "explanation": ""
+            },
+            {
+                "content": "C. row key",
+                "explanation": "C"
+            },
+            {
+                "content": "D. master key",
+                "explanation": ""
+            }
+        ]
+    },
+    {
+        "title": "What is the HBase Shell for Cloud Bigtable?",
+        "kind": "single",
+        "resolution": [
+            1
+        ],
+        "answers": [
+            {
+                "content": "A. The HBase shell is a GUI based interface that performs administrative tasks, such as creating and deleting tables.",
+                "explanation": ""
+            },
+            {
+                "content": "B. The HBase shell is a command-line tool that performs administrative tasks, such as creating and deleting tables.",
+                "explanation": "B"
+            },
+            {
+                "content": "C. The HBase shell is a hypervisor based shell that performs administrative tasks, such as creating and deleting new virtualized instances.",
+                "explanation": ""
+            },
+            {
+                "content": "D. The HBase shell is a command-line tool that performs only user account management functions to grant access to Cloud Bigtable instances.",
+                "explanation": ""
+            }
+        ]
+    }
+]
